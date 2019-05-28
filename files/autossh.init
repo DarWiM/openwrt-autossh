@@ -11,6 +11,7 @@ START=99
 start_instance() {
 	config_get_bool enabled "$1" 'enabled'
 	config_get localport "$1" 'localport'
+	config_get localaddr "$1" 'localaddr'
 	config_get remoteport "$1" 'remoteport'
 	config_get monitorport "$1" 'monitorport'
 	config_get ssh "$1" 'ssh'
@@ -55,7 +56,7 @@ start_instance() {
 		echo ${monitorport:-20000}
 		/usr/sbin/autossh \
 			-M ${monitorport:-20000} \
-			-f -N -R ${remoteport}:localhost:${localport} ${ssh}
+			-f -N -R ${remoteport}:${localaddr}:${localport} ${ssh}
 	fi
 }
 
