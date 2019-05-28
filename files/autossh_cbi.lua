@@ -6,9 +6,9 @@
 ]]--
 
 m = Map("autossh", translate("AutoSSH"),
-	translate("设置路由器的 SSH 反向隧道"))
+	translate("Set the router's SSH reverse tunnel"))
 
-s = m:section(TypedSection, "autossh", translate("AutoSSH 设置"))
+s = m:section(TypedSection, "autossh", translate("AutoSSH settings"))
 s.anonymous   = true
 s.addremove   = true
 
@@ -16,21 +16,25 @@ o = s:option(Flag, "enabled", translate("Enable"))
 o.default     = o.enabled
 o.rmempty     = false
 
-o = s:option(Value, "localport", translate("本地端口"))
+o = s:option(Value, "localport", translate("Local port"))
 o.placeholder = 22
 o.datatype    = "port"
 o.rmempty     = false
 
-o = s:option(Value, "remoteport", translate("远程端口"))
+o = s:option(Value, "localaddr", translate("Local addr"))
+o.placeholder = "localhost"
+o.rmempty     = false
+
+o = s:option(Value, "remoteport", translate("Remote port"))
 o.placeholder = 19999
 o.datatype    = "port"
 o.rmempty     = false
 
-o = s:option(Value, "monitorport", translate("监视端口"))
+o = s:option(Value, "monitorport", translate("Monitor port"))
 o.datatype    = "port"
 o.rmempty     = false
 
-o = s:option(Value, "ssh", translate("远程登陆"))
+o = s:option(Value, "ssh", translate("Remote login"))
 o.rmempty     = false
 
 o = s:option(Value, "AUTOSSH_FIRST_POLL", translate("AUTOSSH_FIRST_POLL"))
